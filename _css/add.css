@@ -1,0 +1,126 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 de nov. de 2023, 21:33:48
+    Author     : Julians
+*/
+*{
+    margin:0;
+    padding:0;
+    
+    color: #666666;
+    
+}
+@media (max-width:900px)
+{
+    *{
+        overflow: visible !important;
+    }
+    main{
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    .form-add-args input.valuesadd{
+        width: 95px;
+    }
+   
+}
+@media (max-width:1313px)
+{
+   div.form-area{
+        background-image:none !important;
+    }
+   
+}
+body{
+    background-color: #E9E9E9;
+    overflow: scroll;
+}
+main{
+    background-color:white;
+    
+    margin-top:0; 
+    padding: 40px 50px;
+    border-radius:0;
+    width: 60%;
+}
+
+div.form-area{
+    background-color: white;
+    width: 80%; 
+    border: 1px solid #e8e6e6;
+    padding: 8px 50px;
+    background-image: url('../_picture/meter.png');
+    background-position: right 20% center;
+    background-repeat: no-repeat;
+    background-size: 165px 165px;
+}
+
+.form-add-args{
+    width: 100%;
+    padding: 20px;
+    margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.form-add-args label{
+    font-family: Arial,sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 9pt;
+    color: #9e9d9d;
+}
+.form-add-args input.valuesadd[type="number"]::-webkit-inner-spin-button,
+.form-add-args input.valuesadd[type="nunber"]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+}
+.form-add-args input.valuesadd[type="text"]{
+    width: 57%;
+} 
+.form-add-args input.valuesadd{
+    width: 50px;
+    padding: 6px 10px;
+    margin: 7px auto;
+    box-shadow: .5px 1px 2px #e0e0e0;
+    border:1px solid #e2e2e2;
+    border-radius: 4px;
+    display: inline-block;
+    
+    
+}
+.form-add-args input:focus{
+    outline: none;
+    
+}
+.form-add-args button.submt{
+    margin: 30px auto auto 0;
+    padding: 14px 47px;
+    background-color: #3dad62;
+    color:white;
+    font-family: Roboto,sans-serif;
+    box-shadow: none;
+    border: 1px solid #d3d3d3;
+    outline: none;
+    border-radius: 4px;
+    font-weight: 700;
+}
+.btn-reset{
+    color:#898989;
+    font-family: Arial,sans-serif;
+    box-shadow: none;
+    border: 1px solid #d3d3d3;
+    outline: none;
+    background-image: linear-gradient(to top,#f3f3f3,white 90%);
+    border-radius: 4px;
+    margin-top: 30px;
+    margin-right: 60px;
+    float: right;
+    width: 90px;
+    padding: 11px 17px;
+    font-weight: 500;
+}
+
+

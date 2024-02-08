@@ -1,0 +1,159 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 6 de nov. de 2023, 22:24:37
+    Author     : Julians
+*/
+@media (max-width:900px)
+{
+    body{
+        background-color: white !important;
+    }
+    aside.figure-tema{
+        display: none !important;
+    }
+    div.find-car{
+     border-radius: 0 !important;
+     height: 100px;
+   }
+   
+}
+
+body{
+    background-color: #a5a4a0;
+    overflow: visible;
+    font-family: Roboto,sans-serif;
+}
+main{
+    width: 68%;
+    display: block;
+    background-color:white;
+    box-shadow:1px 1px 3px #cbcbcb;
+    margin-top: 0px;
+    padding: 40px 50px;
+    border-radius:0;
+    
+}
+div.find-car{
+    width: 100%;
+    padding: 10px 0;
+    margin:0 auto;
+    background-image: linear-gradient(to top,#e7e7e7 , white );
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+div.find-car .input-find-car{
+    width: 255px;
+    padding: 15px 10px 15px 10px;
+    height: 11px;
+    outline: none;
+    border:1px solid #d4d1d1;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow:1px 1px 2px #a5a4a0;
+}
+div.find-car .input-find-car:focus{
+    
+    box-shadow:1px 1px 3px #639eeb;
+}
+div.find-car button{
+    box-shadow:1px 1px 2px #a5a4a0;
+    padding: 13px 10px 13px 10px;
+    outline: none;
+    border:1px solid #d4d1d1;
+    border-radius: 0 15px 15px 0;
+    background-color: white;
+    margin-left: -27px;
+}
+div.result-data{
+    
+    padding: 14px 7px;
+    align-content: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+span.val-result{
+   padding: 7px;
+   font-weight: 200;
+   font-size: 9pt;
+}
+table.view-data{
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin: 10px auto;
+    border: 1px solid #cecece;
+    border-radius: 5px 5px 0 0;
+    font-family: Roboto,sans-serif;
+}
+table.view-data td{
+   padding: 5px 5px;
+   font-size: 8pt;
+   font-weight: 700;
+   color: #91918f;
+}
+table.view-data td.lefttd{
+    text-align: left;
+}
+table.view-data thead th {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size:9pt;
+    color:#91918F;
+    padding: 5px 5px;
+}
+table.view-data tr:nth-child(odd){
+    background-color: #dbdbdb;
+}
+table.view-data tr:nth-child(even){
+    background-color: white;
+}
+form.form-edit{
+    margin-top:-10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+form.form-edit input[type="submit"]{
+    width: 100%;
+    height: 30px;
+    margin:0 auto;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #c9c9c9;
+    background-color: #A970FF;
+    color:white;
+    font-family: Roboto,sans-serif;
+    font-weight: 700;
+}
+form.form-edit input[type="submit"]:hover{
+    cursor: pointer;
+}
+main.not-result {
+    width: 80%;
+    height: 350px;
+    background-color:white;
+    margin:50px auto;
+    box-shadow: none;
+    outline: none;
+}
+main.not-result div{
+    width: 88%;
+    height: 135px;
+    margin: 100px auto;
+    text-align: center;
+    border:none;
+    background-image: url('../_picture/error-result.png');
+    background-position: bottom 20% right 35%;
+    background-repeat: no-repeat;
+    background-size: 85px 85px;
+}

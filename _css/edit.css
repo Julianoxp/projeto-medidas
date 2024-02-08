@@ -1,0 +1,89 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 20 de nov. de 2023, 17:46:25
+    Author     : Julians
+*/
+@media (max-width:1313px)
+{
+    main{
+        background-image:none !important;
+    }
+    .hr{
+        display: none !important;
+    }
+    form.edit{
+        border: none !important;
+    }
+}
+main{
+    background-image: url('../_picture/icon-edit.png');
+    background-size: 90px 90px;
+    background-position: top left 17%;
+    background-repeat: no-repeat;
+}
+form.edit{
+    width: 450px;
+    margin: -70px auto;
+    border-left: 1px solid #d4d4d4;
+    background-color: white;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-evenly;
+}
+form.edit label{
+    font-family: Arial,sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 9pt;
+    color: #9e9d9d;
+}
+form.edit .btn-upd{
+   margin-top: 30px;
+   
+   background-color: rgb(98, 187, 110);
+   color: white;
+   font-family: Arial,'Sans serif';
+   padding: 12px 18px;
+   border: none;
+   outline: none;
+   border-radius: 4px;
+}
+form.edit input[type="text"]
+{
+    width: 150px;
+    padding: 6px 10px;
+    margin: 7px auto;
+    box-shadow: .5px 1px 2px #e0e0e0;
+    border:1px solid #e2e2e2;
+    border-radius: 4px;
+    
+}
+form.edit .align-left{
+    width: 40%;
+    float: left;
+    
+}
+form.edit .align-rigth{
+    
+    width: 40%;
+    float: right
+}
+.form-delcar{
+    margin-top: 120px;
+  
+}
+.form-delcar input[type=submit]{
+    background-color: rgb(204, 103, 103);
+    color: white;
+    font-family: Arial,'Sans serif';
+    padding: 12px 8px;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}
+
