@@ -22,45 +22,53 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
         <main>
         <?php
             
-            $postt = filter_input(INPUT_POST,'editFile');
-            if($postt){
-                 $model = filter_input(INPUT_POST, 'indiceModel');
+            $idSelect = filter_input(INPUT_POST,'idSelect');
+            if(isset($idSelect)){
                  require './_classphp/ConectDBMYSQL.php';
                  require './_classphp/SQLQ.php';
                  $con = new SQLQ();
-                $sql = $con->selectData($model);
+                $sql = $con->selectData($idSelect);
                  
             }
-            $lista = $sql->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($lista as $iten)
+            $carSelect = $sql->fetchAll(PDO::FETCH_ASSOC);
+            $carReference = null;
+            foreach ($carSelect as $item)
             {
+                $carReference = $item['MODELO'];
         ?>
             <form method="POST" action="./_process/process.ini.php" class="edit" >
                 <div class="align-left">
-                    <label name="indiceModel">MODELO :</label><input type="hidden" name="indiceModel" value="<?=$iten['MODELO']?>" /><br><br>
-                    <label>PARABRISA :</label><br><br>
+                    <label>MODELO :</label><br><br><br>
+                    <label>ANO :</label><br><br>
+                    <label>PARABRISA :</label><br><br><br>
                     <label>PORTAS DIANT :</label><br><br>
                     <label>PORTAS TRAS :<br><br>
+                    <label>VIDRO LAT TRASEIRO:</label><br><br><br>
                     <label>VIDRINHOS DIANT :<br><br>
                     <label>VIDRINHOS TRAS :<br><br>
-                    <label>TRASEIRO :</label><br><input type="submit" name="editData" value="Save" class="btn-upd"/><br><br>
+                    <label>TRASEIRO :</label><br><br>
+                    <button type="submit" class="btn-upd" value="updata" name="upData">Save Change</button><input type="hidden" name="carId" value="<?=$item['ID']?>" /><br><br>
+                    
                 </div>
                 <div class="align-rigth">
-                    <input type="text" value="<?=$iten['MODELO']?>" disabled style="text-align:center;" /><br>
-                    <input type="text" name="parabrisa" value="<?=$iten['PARABRISA']?>"/><br>
-                    <input type="text" name="ptdiant" value="<?=$iten['PORTAS DIANTEIRAS']?>"/><br>
-                    <input type="text" name="pttras" value="<?=$iten['PORTAS TRASEIRAS']?>"/><br>
-                    <input type="text" name="vddiant" value="<?=$iten['VIDRINHOS/VIDROS DIANT']?>"/><br>
-                    <input type="text" name="vdtras" value="<?=$iten['VIDRINHOS/VIDROS TRAS']?>"/><br>
-                    <input type="text" name="traseiro" value="<?=$iten['TRASEIRO']?>"/><br>
+                    <input type="text" name="modelo" value="<?=$item['MODELO']?>" style="text-align:center;" /><br>
+                    <input type="text" name="ano" value="<?=$item['ANO']?>"/><br>
+                    <input type="text" name="parabrisa" value="<?=$item['PARABRISA']?>"/><br>
+                    <input type="text" name="ptdiant" value="<?=$item['PORTAS DIANTEIRAS']?>"/><br>
+                    <input type="text" name="pttras" value="<?=$item['PORTAS TRASEIRAS']?>"/><br>
+                    <input type="text" name="lattras" value="<?=$item['VIDRO LAT TRASEIRO']?>"/><br>
+                    <input type="text" name="vddiant" value="<?=$item['VIDRO AUX DIANTEIRO']?>"/><br>
+                    <input type="text" name="vdtras" value="<?=$item['VIDRO AUX TRASEIRO']?>"/><br>
+                    <input type="text" name="traseiro" value="<?=$item['VIGIA TRASEIRO']?>"/><br>
                 </div>
             </form>
                 <?php 
                 }
              ?>
             <form class="form-delcar" action="./_process/process.ini.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" value="<?=$model?>" name="delCar">
-                <input type="submit" value="Delete this car">
+                <input type="hidden" value="<?=$carReference?>" name="carRefModel">
+                <input type="hidden" value="<?=$idSelect?>" name="idcarDelete">
+                <button type="submit" value="del" name="carDelete" >Delete this car</button>
             </form>
             
             </main>

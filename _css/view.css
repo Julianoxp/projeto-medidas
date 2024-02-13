@@ -22,7 +22,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 body{
-    background-color: #a5a4a0;
+    background-color: #e7eef3;
     overflow: visible;
     font-family: Roboto,sans-serif;
 }
@@ -36,19 +36,14 @@ main{
     border-radius:0;
     
 }
-div.find-car{
-    width: 100%;
-    padding: 10px 0;
-    margin:0 auto;
-    background-image: linear-gradient(to top,#e7e7e7 , white );
-    display: flex;
-    align-items: center;
-    flex-direction:row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    
+.find-car{
+   margin: 22px auto;
+   padding-top: 17px;
+   width: 260px;
+   position: relative;    
 }
-div.find-car .input-find-car{
+.input-find-car{
+    margin:5px auto;
     width: 255px;
     padding: 15px 10px 15px 10px;
     height: 11px;
@@ -57,18 +52,21 @@ div.find-car .input-find-car{
     border-radius: 15px 15px 15px 15px;
     box-shadow:1px 1px 2px #a5a4a0;
 }
-div.find-car .input-find-car:focus{
+.input-find-car:focus{
     
     box-shadow:1px 1px 3px #639eeb;
 }
-div.find-car button{
-    box-shadow:1px 1px 2px #a5a4a0;
-    padding: 13px 10px 13px 10px;
+.find-car button{
+    box-shadow:1px 1px 1px #a5a4a0;
+    padding: 12px 10px 13px 10px;
     outline: none;
     border:1px solid #d4d1d1;
     border-radius: 0 15px 15px 0;
     background-color: white;
-    margin-left: -27px;
+    position: absolute;
+    right: -20px;
+    top: 22px;
+    
 }
 div.result-data{
     
@@ -79,10 +77,23 @@ div.result-data{
     justify-content: space-around;
     flex-wrap: wrap;
 }
-span.val-result{
-   padding: 7px;
-   font-weight: 200;
+div#msg{
+   font-family: Arial,'Sans serif';
+   font-weight: 700;
    font-size: 9pt;
+   background-color: rgb(90, 153, 90);
+   color: white;
+   text-align: center;
+   padding: 4px 0;
+   animation: .4s zoonIN ease-in;
+}
+@keyframes zoonIN {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 table.view-data{
     color: white;

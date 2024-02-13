@@ -11,7 +11,40 @@
  * @author Julians
  */
 class SQLQ extends ConectDBMYSQL{
-     
+    
+    private $msgQueryResult;
+    private $resultTrueMsg = true;
+
+    public function setMsgResult($result)
+    {
+       if($this->resultTrueMsg == true)
+       {
+        switch($result)
+        {
+            case'isrt':
+            {
+                $this->msgQueryResult = 'Cadastrado com Sucesso!!';
+                break;
+            }
+            case'updt':
+            {
+                $this->msgQueryResult = 'Atualizado com Sucesso!!';
+                break;
+            }
+            case'dlt':
+            {
+                $this->msgQueryResult = 'Item deletado!';
+                break;
+            }
+
+        }
+        
+       }
+    }
+    public function getMsgResult()
+    {
+         
+    }
     function queryAll()
     {
         $query = parent::getConn()->prepare("SELECT * FROM CARROS");
@@ -38,15 +71,14 @@ class SQLQ extends ConectDBMYSQL{
         }
         
     }
-    public function queryInsert($modelo,$parabrisa,$ptdianteira,$ptraseira,$vddiant,$vdtras,$traseiro)
+    public function queryInsert($modelo,$ano,$parabrisa,$ptdianteira,$ptraseira,$lattras,$vddiant,$vddtras,$traseiro)
     {
-        $sqlinsert = parent::getConn()->prepare("INSERT INTO `carros` (`MODELO`, `PARABRISA`, `PORTAS DIANTEIRAS`, `PORTAS TRASEIRAS`, `VIDRINHOS/VIDROS DIANT`, `VIDRINHOS/VIDROS TRAS`, `TRASEIRO`) VALUES"
-                . " ('$modelo', '$parabrisa', '$ptdianteira', '$ptraseira', '$vddiant', '$vdtras', '$traseiro')");
+        $sqlinsert = parent::getConn()->prepare("INSERT INTO `carros` (`ID`,`MODELO`,`ANO`, `PARABRISA`, `PORTAS DIANTEIRAS`, `PORTAS TRASEIRAS`, `VIDRO LAT TRASEIRO`, `VIDRO AUX DIANTEIRO`, `VIDRO AUX TRASEIRO`, `VIGIA TRASEIRO`) VALUES('','$modelo','$ano', '$parabrisa', '$ptdianteira', '$ptraseira','$lattras', '$vddiant', '$vddtras', '$traseiro')");
         $sqlinsert->execute();
         if($sqlinsert->rowCount()>=1){
-            
-            echo '<script language="javascript">alert("Cadastrado com Sucesso!!");'
-            . 'document.location="../search.php?carname='.$modelo.'";';
+            echo"<form id='formadd' action='../search.php?carname={$modelo}' method='post'><input type='hidden' value='Cadastrado com sucesso!!' name='instcar'/></form>";
+            echo '<script language="javascript">'
+            . 'document.getElementById("formadd").submit();';
             echo '</script>';   
          
         }
@@ -57,67 +89,79 @@ class SQLQ extends ConectDBMYSQL{
         }
 
     }
-    public function selectData($modelo){
+    public function selectData($carid){
                 
-                $slct = parent::getConn()->prepare("SELECT * FROM `carros` WHERE MODELO='$modelo'");
+                $slct = parent::getConn()->prepare("SELECT * FROM `carros` WHERE ID='$carid'");
                 $slct->execute();
                 if($slct->rowCount())
                 {
                    return $slct;                  
                 }
     }
-    function updtData($updPbrsa,$updptdiant,$updpttras,$updvddiant,$updvdtras,$updtras,$indModel){
+    function updtData($updmodel,$updano,$updPbrsa,$updptdiant,$updpttras,$updlattras,$updvddiant,$updvdtras,$updtras,$idcar){
         
-        $upd = parent::getConn()->prepare("UPDATE `carros` SET `PARABRISA`='$updPbrsa', `PORTAS DIANTEIRAS`='$updptdiant',`PORTAS TRASEIRAS`='$updpttras',`VIDRINHOS/VIDROS DIANT`='$updvddiant', `VIDRINHOS/VIDROS TRAS`='$updvdtras', `TRASEIRO`='$updtras' WHERE `MODELO`='$indModel'");
+        $upd = parent::getConn()->prepare("UPDATE `carros` SET `MODELO`='$updmodel',`ANO`='$updano', `PARABRISA`='$updPbrsa', `PORTAS DIANTEIRAS`='$updptdiant',`PORTAS TRASEIRAS`='$updpttras',`VIDRO LAT TRASEIRO`='$updlattras',`VIDRO AUX DIANTEIRO`='$updvddiant', `VIDRO AUX TRASEIRO`='$updvdtras', `VIGIA TRASEIRO`='$updtras' WHERE `ID`='$idcar'");
         $upd->execute();
         if($upd->rowCount()>=1)
         {
-            echo '<script language="javascript">alert("Sucesso!!");'
-            . 'document.location="../search.php?carname='.$indModel.'";';
-            echo '</script>';    
+            echo"<form id='formadd' action='../search.php?carname={$updmodel}' method='post'><input type='hidden' value='Atualizado com sucesso!!' name='updtcar'/></form>";
+            echo '<script language="javascript">'
+            . 'document.getElementById("formadd").submit();';
+            echo '</script>';  
             
             
         }
         else{
             echo '<script language="javascript">alert("Dados iguais,Nada atualizado!!");'
-            . 'document.location="../search.php?carname='.$indModel.'";';
+            . 'document.location="../search.php?carname='.$updmodel.'";';
             echo '</script>';       
             
         }
     }
-    function deleteCar($modelo)
+    function deleteCar($iDelete,$model)
     {
-        $delcar = parent::getConn()->prepare("DELETE FROM `carros` WHERE MODELO='$modelo'");
-                $delcar->execute();
-                if($delcar->rowCount()>=1)
-                {
-                    echo '<script language="javascript">alert("Excluído!!");'
-                    . 'document.location="../search.php?carname='.$modelo.'";';
-                    echo '</script>';       
+        $delcar = parent::getConn()->prepare("DELETE FROM `carros` WHERE ID='$iDelete'");
+        $delcar->execute();
+        if($delcar->rowCount()>=1)
+        {
+            echo '<script language="javascript">alert("Excluido!!");'
+            . 'document.location="../search.php?carname='.$model.'";';
+            echo '</script>';  
                     
-                }
+                    
+        }
     }
   
   
     function GetnameCar($carname){
         $gnc = parent::getConn()->prepare("SELECT * FROM `carros` WHERE `MODELO` LIKE '%$carname%'");
         $gnc->execute();
-        if($gnc->rowCount()>=1){
-            $listname = $gnc->fetch(PDO::FETCH_ASSOC);
-            
-            echo'<table class="view-data"><thead><tr><th colspan="3" class="data-title">'.$listname['MODELO'].'</th></tr></thead><tbody>
-              <tr><td>PEÇAS</td><td colspan="2">LARGURA x ALTURA</td></tr>';
-            
-                foreach ($listname as $iten=> $value)
+        if($gnc->rowCount()){
+            $listname = $gnc->fetchAll(PDO::FETCH_ASSOC);
+            $this->setMsgResult('okk');
+                        
+                foreach ($listname as $item)
                 {
-                  echo "<tr><td>$iten</td><td>$value</td></tr>";
+                  echo"<table class='view-data'><thead><tr><th colspan='3' class='data-title'>{$item['MODELO']}</th></tr></thead><tbody>
+                    <tr><td>PEÇAS</td><td colspan='2'>LARGURA x ALTURA</td></tr>";
+
+                  echo "<tr><td>PARABRISA</td><td>{$item['PARABRISA']}</td></tr>";
+                  echo "<tr><td>PORTAS DIANTEIRA</td><td>{$item['PORTAS DIANTEIRAS']}</td></tr>";
+                  echo "<tr><td>PORTAS TRASEIRAS</td><td>{$item['PORTAS TRASEIRAS']}</td></tr>";
+                  echo "<tr><td>VIDRO LAT TRASEIRO</td><td>{$item['VIDRO LAT TRASEIRO']}</td></tr>";
+                  echo "<tr><td>VIDRO AUX DIANTEIRO</td><td>{$item['VIDRO AUX DIANTEIRO']}</td></tr>";
+                  echo "<tr><td>VIDRO AUX TRASEIRO</td><td>{$item['VIDRO AUX TRASEIRO']}</td></tr>";
+                  echo "<tr><td>VIGIA TRASEIRO</td><td>{$item['VIGIA TRASEIRO']}</td></tr>";
+                  
+
+                  echo'</tbody>
+                  </table>
+                  <form method="POST" enctype="multipart/form-data" action="./edit.php" class="form-edit">
+                  <input type="hidden" value="'.$item['ID'].'" name="idSelect"/>
+                  <input type="submit" value="Editar" name="editFile" class="btn-edit"/>
+                  </form><br>';
                 }
-            echo'</tbody>
-             </table>
-             <form method="POST" enctype="multipart/form-data" action="./edit.php" class="form-edit">
-             <input type="hidden" value="'.$listname['MODELO'].'" name="indiceModel"/>
-             <input type="submit" value="Editar" name="editFile" class="btn-edit"/>
-             </form><br>';
+           
           }
          
         else{
@@ -125,7 +169,7 @@ class SQLQ extends ConectDBMYSQL{
         }
             
     }
-   /* function GetNumberResult($carname)
+   function GetResult($carname)
     {
         if($getResult = parent::getConn()->prepare("SELECT * FROM `carros` WHERE `MODELO` LIKE '%$carname%'")){
             $getResult->execute();
@@ -136,7 +180,7 @@ class SQLQ extends ConectDBMYSQL{
                 {
                     $totresult++;
                 }
-                echo $totresult;
+                return $totresult;
             }
         }
         else{echo'0';}
@@ -155,5 +199,5 @@ class SQLQ extends ConectDBMYSQL{
             printf("%0.16f segundos", $tempo/1000000);
         }
         
-    }*/
+    }
 }

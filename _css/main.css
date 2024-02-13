@@ -85,7 +85,9 @@ main {
 header.topo-menu {
     background-color: #6563FF;
     padding: 25px 0 25px 0;
-    margin-bottom: 10px;
+    position:absolute;
+    top: 0;
+    left: 0;
     box-shadow: 1px 1px 7px #666666;
     width: 100%;
     min-width: 350px;
@@ -151,18 +153,21 @@ header.topo-menu h3{
 }
 header.navbar{
     background-color: white;
-    height: 65px;
     width: 100%;
-    margin-top: -10px;
+    margin-top: 60px;
     border-bottom:1px solid #dbdbdb;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
 }
-header.navbar button.btn-back{
+button.btn-back{
     width: 95px;
     height: 35px;
     font-family: Roboto,sans-serif;
-    margin-top: 15px;
+    margin-top: 42px;
     margin-right: 20px;
-    float: right;
+    
     outline: none;
     text-align: right;
     padding-right: 10px;

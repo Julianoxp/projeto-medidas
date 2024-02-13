@@ -5,28 +5,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
  */
 
-require './_classphp/ConectDBMYSQL.php';
-require './_classphp/SQLQ.php';
+require_once './_classphp/ConectDBMYSQL.php';
+require_once './_classphp/SQLQ.php';
 
 $carname = filter_input(INPUT_POST, 'carname');
-$getcarname = filter_input(INPUT_GET, 'carname');
-
-$carherf;
+$insertpostmsg = filter_input(INPUT_POST, 'instcar');
+$updpostmsg = filter_input(INPUT_POST, 'updtcar');
+$carReference;
 
 $q = new SQLQ();
-if(empty($carname) && empty($getcarname))
+if(empty($carname))
     {
-     $carherf = null;
+     $carReference = filter_input(INPUT_GET,'carname');
     }
     else {
-        if(!empty($carname))
-        {
-            $carherf = $carname;
-        }
-        else{
-            $carherf = $getcarname;
-        }
+        $carReference = $carname;
     }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,26 +34,29 @@ if(empty($carname) && empty($getcarname))
         <link rel="stylesheet" type="text/css" href="_css/view.css"/>
     </head>
     <body>
+    <script>
+        if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+        }
+</script>
          <header class="topo-menu">
                 <h3 class="title-main">Dashborad &nbsp;|&nbsp; Search Car </h3>
         </header>
         <header class="navbar">
-            <button onsubmit="return false" onclick="window.location='index.php'" class="btn-back"> Back</button>
-        </header>
-        <div class="find-car">
-            <form method="GET" action="search.php">
-                <input type="text"  class="input-find-car" required="true" name="carname" value="<?php echo $carherf;?>"/>
+            <form method="post" action="<?=$_SERVER['PHP_SELF']?>" class="find-car">
+                <input type="text"  class="input-find-car" required="true" name="carname" value="<?php echo $carReference;?>"/>
                 <button type="submit">Search</button>
             </form>
-            
-        </div>        
+            <button onsubmit="return false" onclick="window.location='index.php'" class="btn-back"> Back</button>
+        </header>
+        <div id="msg"><?php if(!empty($insertpostmsg)){echo$insertpostmsg;}else{if(!empty($updpostmsg)){echo$updpostmsg;}else{echo'Consulta com Sucesso!!'.' '.' Resultados: '.$q->GetResult($carReference);}} ?></div>
         <main>
          <?php
                
             $process = microtime(true);
-            if($carherf!=null){
+            if($carReference!=null){
                 
-                   $q->GetnameCar($carherf);
+                   $q->GetnameCar($carReference);
                                   
                 }
           ?>
@@ -66,8 +64,8 @@ if(empty($carname) && empty($getcarname))
             setTimeout(function(){
                var msg = document.querySelector('#msg');
                msg.parentNode.removeChild(msg);
-            },5000);
+            },8000);
          </script>
-       
+        </main>
     </body>
 </html>

@@ -27,7 +27,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                 <div class="welcomemsg" onclick="window.location='view.php'">
                         <h2>CAR Tech - Meter </h2>
                   </div>
-                    <form method="GET" action="search.php" class="form-search" >
+                    <form method="post" action="search.php" class="form-search" >
                         <input class="input-search" type="search" name="carname"  placeholder="Digite seu veículo.." />
                     <button class="btn-search"></button>
                  </form>
