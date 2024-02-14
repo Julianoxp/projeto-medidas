@@ -22,7 +22,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 body{
-    background-color: #e7eef3;
+    background-color: #ffffff;
     overflow: visible;
     font-family: Roboto,sans-serif;
 }
@@ -30,7 +30,7 @@ main{
     width: 68%;
     display: block;
     background-color:white;
-    box-shadow:1px 1px 3px #cbcbcb;
+    
     margin-top: 0px;
     padding: 40px 50px;
     border-radius:0;
@@ -141,7 +141,7 @@ form.form-edit input[type="submit"]{
     margin:0 auto;
     border-radius: 0 0 5px 5px;
     border: 1px solid #c9c9c9;
-    background-color: #A970FF;
+    background-color: #4a6dd6;
     color:white;
     font-family: Roboto,sans-serif;
     font-weight: 700;

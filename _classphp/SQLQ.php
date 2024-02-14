@@ -124,9 +124,10 @@ class SQLQ extends ConectDBMYSQL{
         $delcar->execute();
         if($delcar->rowCount()>=1)
         {
-            echo '<script language="javascript">alert("Excluido!!");'
-            . 'document.location="../search.php?carname='.$model.'";';
-            echo '</script>';  
+            echo"<form id='formadd' action='../search.php?carname={$model}' method='post'><input type='hidden' value='Item Deletado!!' name='deletcar'/></form>";
+            echo '<script language="javascript">'
+            . 'document.getElementById("formadd").submit();';
+            echo '</script>'; 
                     
                     
         }

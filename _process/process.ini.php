@@ -32,7 +32,7 @@ require '../_classphp/SQLQ.php';
         
         $action = new SQLQ();
         
-        if(isset($okinsert) != null){
+        if(!empty($okinsert)){
          
             $modelo = filter_input(INPUT_POST, 'modelo');
             $ano = filter_input(INPUT_POST,'ano');
@@ -44,11 +44,11 @@ require '../_classphp/SQLQ.php';
             $vdtras = filter_input(INPUT_POST, 'vdtrasLAR') .' x '. filter_input(INPUT_POST, 'vdtrasALT');
             $traseiro = filter_input(INPUT_POST, 'traseiroLAR') .' x '. filter_input(INPUT_POST, 'traseiroALT');
             
-            
+            printf($modelo);
             $action->queryInsert($modelo,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro);
                     
         }
-        if(isset($okupdate) != null)
+        if(!empty($okupdate))
         {
             $carid = filter_input(INPUT_POST, 'carId');
             $model = filter_input(INPUT_POST, 'modelo');
@@ -64,7 +64,7 @@ require '../_classphp/SQLQ.php';
             $action->updtData($model,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro,$carid);
             //echo"UPDATED ON";
         }
-        if(isset($okdelete) != null)
+        if(!empty($okdelete))
         {
             $car = filter_input(INPUT_POST,'carDelete');
             if(isset($car))
@@ -77,8 +77,7 @@ require '../_classphp/SQLQ.php';
             
             //echo"DELETED ON";
         }
-
-        
+        echo 'nada aqui<br>';
         ?>
         
 </main>

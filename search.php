@@ -11,6 +11,7 @@ require_once './_classphp/SQLQ.php';
 $carname = filter_input(INPUT_POST, 'carname');
 $insertpostmsg = filter_input(INPUT_POST, 'instcar');
 $updpostmsg = filter_input(INPUT_POST, 'updtcar');
+$Delpostmsg = filter_input(INPUT_POST, 'deletcar');
 $carReference;
 
 $q = new SQLQ();
@@ -28,28 +29,40 @@ if(empty($carname))
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+       
         <title>CarTech-Meter</title>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="_css/main.css"/>
         <link rel="stylesheet" type="text/css" href="_css/view.css"/>
     </head>
     <body>
-    <script>
-        if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-        }
-</script>
+        <?php if(!empty($insertpostmsg) || !empty($updpostmsg))
+            {
+            ?>
+            <script>
+          
+            if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+            }
+            
+            </script>
+        <?php }?>
          <header class="topo-menu">
-                <h3 class="title-main">Dashborad &nbsp;|&nbsp; Search Car </h3>
+                <div class="btn-back" onclick="window.location='index.php'">
+                    <div class="icon-mini-burguer">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div> <h3>&nbsp;&nbsp; Procurar </h3>
         </header>
         <header class="navbar">
             <form method="post" action="<?=$_SERVER['PHP_SELF']?>" class="find-car">
                 <input type="text"  class="input-find-car" required="true" name="carname" value="<?php echo $carReference;?>"/>
                 <button type="submit">Search</button>
             </form>
-            <button onsubmit="return false" onclick="window.location='index.php'" class="btn-back"> Back</button>
         </header>
-        <div id="msg"><?php if(!empty($insertpostmsg)){echo$insertpostmsg;}else{if(!empty($updpostmsg)){echo$updpostmsg;}else{echo'Consulta com Sucesso!!'.' '.' Resultados: '.$q->GetResult($carReference);}} ?></div>
+        <?php if(!empty($insertpostmsg)){echo'<div id="msg" style="background-color:#009A68">'.$insertpostmsg.'</div>';}if(!empty($updpostmsg)){echo'<div id="msg" style="background-color:#4a6dd6">'.$updpostmsg.'</div>';}if(!empty($Delpostmsg)){echo'<div id="msg" style="background-color:#af3a3a">'.$Delpostmsg.'</div>';}?>
         <main>
          <?php
                
