@@ -25,18 +25,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                 <div></div>
             </div>
             <h3 class="title-main"> &nbsp;|&nbsp; Home </h3>
+
         </header>
         <main>
             <div class="init-contents">
 
                 <div class="welcomemsg" onclick="window.location='view.php'">
-                        <h2>CAR Tech - Meter </h2>
+                        <h2>CAR Tech - Meter </h2>            
                   </div>
                     <form method="post" action="search.php" class="form-search" >
                         <input class="input-search" type="search" name="carname"  placeholder="Digite seu veículo.." />
                     <button class="btn-search"></button>
                  </form>
-
+                
             </div>
               <div class="grid-layout">
                 
