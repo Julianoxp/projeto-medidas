@@ -11,40 +11,8 @@
  * @author Julians
  */
 class SQLQ extends ConectDBMYSQL{
-    
-    private $msgQueryResult;
-    private $resultTrueMsg = true;
 
-    public function setMsgResult($result)
-    {
-       if($this->resultTrueMsg == true)
-       {
-        switch($result)
-        {
-            case'isrt':
-            {
-                $this->msgQueryResult = 'Cadastrado com Sucesso!!';
-                break;
-            }
-            case'updt':
-            {
-                $this->msgQueryResult = 'Atualizado com Sucesso!!';
-                break;
-            }
-            case'dlt':
-            {
-                $this->msgQueryResult = 'Item deletado!';
-                break;
-            }
 
-        }
-        
-       }
-    }
-    public function getMsgResult()
-    {
-         
-    }
     function queryAll()
     {
         $query = parent::getConn()->prepare("SELECT * FROM CARROS");
@@ -139,7 +107,7 @@ class SQLQ extends ConectDBMYSQL{
         $gnc->execute();
         if($gnc->rowCount()){
             $listname = $gnc->fetchAll(PDO::FETCH_ASSOC);
-            $this->setMsgResult('okk');
+            
                         
                 foreach ($listname as $item)
                 {

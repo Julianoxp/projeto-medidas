@@ -12,7 +12,7 @@
  */
 abstract class ConectDBMYSQL {
     
-    private function __construct()
+    function __construct()
     {
         define('HOST','localhost');
         define('USER','root');

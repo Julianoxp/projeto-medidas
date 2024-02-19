@@ -1,6 +1,72 @@
 window.addEventListener("DOMContentLoaded",(event)=>{
     
-    const formModel = document.querySelector(".form-area");
+    
+  
+ })
+ function rmvMsg(str)
+ {
+    var msg = document.getElementById('msg');
+    click = str;
+    if(!click)
+    {
+        setTimeout(function(){
+                msg.style.display = "none";
+            },5000);
+    }
+    else{
+        msg.style.display = "none";
+    }
+ }
+ function validateForm()
+ {
+
+    for(i=1 ;i<16 ;i++)
+    {
+        if(document.getElementById(i).value == '')
+        {
+            document.getElementById("msg").style.display = "flex";
+            document.getElementById("pmsg").textContent = "Preencha todos os campos obrigatórios!"//alert('')
+            i = 16;
+            rmvMsg(false);
+        }
+            i++;
+    }
+    
+    var CharPermition = 'QWERTYUIOPLKJHGFDSAZXCVBNM1234567890qwertyuioplkjhgfdsazxcvbnm';
+    var modelname = document.getElementById('1').value;
+    var formSubmit = document.getElementById("submt-form");
+    txt = modelname.match("[^A-Za-z0-9_]");
+    if(CharPermition.indexOf(txt)<0 && txt != null)
+    {
+        formSubmit.reset();
+        document.getElementById("msg").style.display = "flex";
+        document.getElementById("msg").focus();
+        document.getElementById("pmsg").textContent = "Não são permitidos caracteres especiais!!"
+        
+        rmvMsg(false);
+    }
+    else
+    {
+        //submitOn();
+    }
+}
+ function submitOn()
+{
+  var formSubmit = document.getElementById("submt-form");
+  formSubmit.submit();
+  formSubmit.reset();
+}
+function validateData(str)
+{
+    var data = document.getElementById(str).value;
+    if(data == null||data =='')
+    {
+        return false;
+    }
+}
+
+/*
+const formModel = document.querySelector(".form-area");
      
     function resetForm()
     {
@@ -23,33 +89,10 @@ window.addEventListener("DOMContentLoaded",(event)=>{
         }
       
     })
-  
- })
- function validateForm()
- {
-      var CharPermition = 'QWERTYUIOPLKJHGFDSAZXCVBNM1234567890qwertyuioplkjhgfdsazxcvbnm';
-      var modelname = document.getElementById('modelcar').value;
-      var formSubmit = document.getElementById("submt-form");
-      txt = modelname.match("[A-Za-z0-9]");
-      if(CharPermition.indexOf(txt)<0)
-      {
-          formSubmit.reset();
-          alert('Não é permitido caracteres especiais!!');
-      }
-      else
-      {
-          submitOn();
-      }
- }
- function submitOn()
-{
-  var formSubmit = document.getElementById("submt-form");
-  formSubmit.submit();
-  formSubmit.reset();
-}
-
+*/
   
     /*    history.pushState(null, null, document.URL);
              window.addEventListener('popstate', function () {
               history.pushState(null, null, document.URL);
              });*/ 
+/* */
