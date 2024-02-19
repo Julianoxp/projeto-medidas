@@ -19,35 +19,36 @@ window.addEventListener("DOMContentLoaded",(event)=>{
  }
  function validateForm()
  {
-
+    var CharPermition = 'QWERTYUIOPLKJHGFDSAZXCVBNM1234567890qwertyuioplkjhgfdsazxcvbnm';
+    var modelname = document.getElementById('1').value;
+    var formSubmit = document.getElementById("submt-form");
+    txt = modelname.match("[^A-Za-z0-9_]");
+    var validatesub;
     for(i=1 ;i<16 ;i++)
     {
         if(document.getElementById(i).value == '')
         {
             document.getElementById("msg").style.display = "flex";
             document.getElementById("pmsg").textContent = "Preencha todos os campos obrigatórios!"//alert('')
-            i = 16;
             rmvMsg(false);
+            break;
         }
-            i++;
+       
+        i++;
+        validatesub = i;
     }
-    
-    var CharPermition = 'QWERTYUIOPLKJHGFDSAZXCVBNM1234567890qwertyuioplkjhgfdsazxcvbnm';
-    var modelname = document.getElementById('1').value;
-    var formSubmit = document.getElementById("submt-form");
-    txt = modelname.match("[^A-Za-z0-9_]");
-    if(CharPermition.indexOf(txt)<0 && txt != null)
+    if(validatesub >=16)
     {
-        formSubmit.reset();
-        document.getElementById("msg").style.display = "flex";
-        document.getElementById("msg").focus();
-        document.getElementById("pmsg").textContent = "Não são permitidos caracteres especiais!!"
+        if(CharPermition.indexOf(txt)<0 && txt != null)
+        {
+            formSubmit.reset();
+            document.getElementById("msg").style.display = "flex";
+            document.getElementById("msg").focus();
+            document.getElementById("pmsg").textContent = "Não são permitidos caracteres especiais!!"
+            rmvMsg(false);
+            
+        }else{i = 16;alert('formulario enviado')}
         
-        rmvMsg(false);
-    }
-    else
-    {
-        //submitOn();
     }
 }
  function submitOn()
