@@ -14,7 +14,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
     </head>
     <body>
          <header class="topo-menu">
-                <h3 class="title-main">Dashborad &nbsp;|&nbsp; Updating</h3>
+         <div class="btn-back" onclick="window.location='index.php'">
+                    <div class="icon-mini-burguer">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div> <h3>&nbsp;&nbsp; Editar </h3>
         </header>
         <header class="navbar">
             <button onsubmit="return false" onclick="javascript:history.back()" class="btn-back"> Back</button>

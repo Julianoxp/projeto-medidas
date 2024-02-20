@@ -18,6 +18,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
      border-radius: 0 !important;
      height: 100px;
    }
+   form.form-edit input[type="submit"]{
+    background-position: 58% 50% !important;
+   }
    
 }
 
@@ -100,25 +103,33 @@ table.view-data{
     text-align: center;
     width: 100%;
     margin: 10px auto;
-    border: 1px solid #cecece;
+    background-color: #DBDBDB;
     border-radius: 5px 5px 0 0;
     font-family: Roboto,sans-serif;
 }
 table.view-data td{
-   padding: 5px 5px;
+    margin: 0;
+   padding: 15px 5px;
    font-size: 8pt;
    font-weight: 700;
    color: #91918f;
 }
 table.view-data td.lefttd{
     text-align: left;
+    width: 180px;
 }
 table.view-data thead th {
     font-weight: 700;
     text-transform: uppercase;
     font-size:9pt;
-    color:#91918F;
-    padding: 5px 5px;
+    color:#868686;
+    padding: 15px 5px;
+    background-color: #DBDBDB;
+}
+.subthead{
+    padding: 10px 5px !important;
+    background-color: #929292;
+    color: #ffffff !important;
 }
 table.view-data tr:nth-child(odd){
     background-color: #dbdbdb;
@@ -142,6 +153,10 @@ form.form-edit input[type="submit"]{
     border-radius: 0 0 5px 5px;
     border: 1px solid #c9c9c9;
     background-color: #4a6dd6;
+    background-image: url('../_picture/edit-icon.png');
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+    background-position: 55% 50%;
     color:white;
     font-family: Roboto,sans-serif;
     font-weight: 700;

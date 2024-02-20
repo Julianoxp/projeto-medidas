@@ -112,15 +112,15 @@ class SQLQ extends ConectDBMYSQL{
                 foreach ($listname as $item)
                 {
                   echo"<table class='view-data'><thead><tr><th colspan='3' class='data-title'>{$item['MODELO']}</th></tr></thead><tbody>
-                    <tr><td>PEÇAS</td><td colspan='2'>LARGURA x ALTURA</td></tr>";
+                    <tr><td class='subthead'>PEÇAS</td><td colspan='2' class='subthead'>LARGURA x ALTURA</td></tr>";
 
-                  echo "<tr><td>PARABRISA</td><td>{$item['PARABRISA']}</td></tr>";
-                  echo "<tr><td>PORTAS DIANTEIRA</td><td>{$item['PORTAS DIANTEIRAS']}</td></tr>";
-                  echo "<tr><td>PORTAS TRASEIRAS</td><td>{$item['PORTAS TRASEIRAS']}</td></tr>";
-                  echo "<tr><td>VIDRO LAT TRASEIRO</td><td>{$item['VIDRO LAT TRASEIRO']}</td></tr>";
-                  echo "<tr><td>VIDRO AUX DIANTEIRO</td><td>{$item['VIDRO AUX DIANTEIRO']}</td></tr>";
-                  echo "<tr><td>VIDRO AUX TRASEIRO</td><td>{$item['VIDRO AUX TRASEIRO']}</td></tr>";
-                  echo "<tr><td>VIGIA TRASEIRO</td><td>{$item['VIGIA TRASEIRO']}</td></tr>";
+                  echo "<tr><td class='lefttd'>PARABRISA</td><td>{$item['PARABRISA']}</td></tr>";
+                  echo "<tr><td class='lefttd'>PORTAS DIANTEIRA</td><td>{$item['PORTAS DIANTEIRAS']}</td></tr>";
+                  echo "<tr><td class='lefttd'>PORTAS TRASEIRAS</td><td>{$item['PORTAS TRASEIRAS']}</td></tr>";
+                  echo "<tr><td class='lefttd'>VIDRO LAT TRASEIRO</td><td>{$item['VIDRO LAT TRASEIRO']}</td></tr>";
+                  echo "<tr><td class='lefttd'>VIDRO AUX DIANTEIRO</td><td>{$item['VIDRO AUX DIANTEIRO']}</td></tr>";
+                  echo "<tr><td class='lefttd'>VIDRO AUX TRASEIRO</td><td>{$item['VIDRO AUX TRASEIRO']}</td></tr>";
+                  echo "<tr><td class='lefttd'>VIGIA TRASEIRO</td><td>{$item['VIGIA TRASEIRO']}</td></tr>";
                   
 
                   echo'</tbody>
