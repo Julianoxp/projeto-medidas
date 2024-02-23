@@ -1,3 +1,36 @@
+<?php 
+require '_classphp/ConectDBMYSQL.php';
+require '_classphp/SQLQ.php';
+$okupdate  = filter_input(INPUT_POST, 'upData');
+$okdelete  = filter_input(INPUT_POST,'carDelete');
+$action = new SQLQ();
+ if(!empty($okupdate))
+ {
+     $carid = filter_input(INPUT_POST, 'carId');
+     $model = filter_input(INPUT_POST, 'modelo');
+     $ano = filter_input(INPUT_POST,'ano');
+     $ptdiant = filter_input(INPUT_POST, 'ptdiant');
+     $pttras = filter_input(INPUT_POST, 'pttras');
+     $lattras = filter_input(INPUT_POST,'lattras');
+     $vddiant = filter_input(INPUT_POST, 'vddiant');
+     $vdtras = filter_input(INPUT_POST, 'vdtras');
+     $traseiro = filter_input(INPUT_POST, 'traseiro');
+     $parabrisa = filter_input(INPUT_POST, 'parabrisa');
+ 
+     $action->updtData($model,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro,$carid);
+     //echo"UPDATED ON";
+ }
+ if(!empty($okdelete))
+    {
+        $car = filter_input(INPUT_POST,'carDelete');
+        if(isset($car))
+        {
+            $carRef = filter_input(INPUT_POST,'carRefModel');
+            $iDelete= filter_input(INPUT_POST,'idcarDelete');
+            $action->deleteCar($iDelete,$carRef);
+        }
+    }
+?>
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,10 +63,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
             
             $idSelect = filter_input(INPUT_POST,'idSelect');
             if(isset($idSelect)){
-                 require './_classphp/ConectDBMYSQL.php';
-                 require './_classphp/SQLQ.php';
-                 $con = new SQLQ();
-                $sql = $con->selectData($idSelect);
+                
+                $sql = $action->selectData($idSelect);
                  
             }
             $carSelect = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +73,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
             {
                 $carReference = $item['MODELO'];
         ?>
-            <form method="POST" action="./_process/process.ini.php" class="edit" >
+            <form method="POST" action="<?=$_SERVER['PHP_SELF']?>" class="edit" >
                 <div class="align-left">
                     <label>MODELO :</label><br><br><br>
                     <label>ANO :</label><br><br>
@@ -71,7 +102,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                 <?php 
                 }
              ?>
-            <form class="form-delcar" action="./_process/process.ini.php" method="post" enctype="multipart/form-data">
+            <form class="form-delcar" action="<?=$_SERVER['PHP_SELF']?>" method="post" enctype="multipart/form-data">
                 <input type="hidden" value="<?=$carReference?>" name="carRefModel">
                 <input type="hidden" value="<?=$idSelect?>" name="idcarDelete">
                 <button type="submit" value="del" name="carDelete" >Delete this car</button>

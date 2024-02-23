@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@media(max-width:900px)
+{
+    main{
+        background-size: 200% !important;
+    }
+}
+*{
+    margin: 0;
+    padding: 0;
+    color: #666666;
+}
+main{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 1px 1px 2px rgb(196, 195, 195);
+    align-items: center;
+    background-image: url('../_picture/background-sistem.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+} 
+div.login-content{
+    border: 1px solid rgba(168, 206, 225, 0.472);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 250px;
+    margin: 0 auto;
+    box-shadow: 1px 1px 3px rgba(152, 153, 153, 0.741);
+    background-color: #fdfdfdb7;
+    border-radius: 7px;
+}
+.login-content h2{
+   
+    font-family: Russo One,'Sans Serif';
+}
+form.form-login{
+    margin-top: 14px;
+    font-family: Roboto, "Noto Naskh Arabic UI", Arial, sans-serif;
+}
+form.form-login label{
+    font-weight: 600;
+    font-size: 11pt;
+}
+form.form-login input{
+    margin: 11px;
+    padding: 4px;
+    outline: none;
+    border:1px solid rgb(222, 222, 222);
+    border-radius: 3px;
+}
+form.form-login input:focus{
+    box-shadow: 1px 1px 3px rgba(97, 186, 196, 0.681);
+}
+form.form-login button{
+    margin: 4px auto 4px 50px;
+    width: 80px;
+    outline: none;
+    border-radius: 2px;
+    background-color: #3580b2;
+    color: white;
+    border: none;
+    padding: 6px 2px;
+}
+form.form-login button:hover{
+    cursor: pointer;
+}

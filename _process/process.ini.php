@@ -1,6 +1,8 @@
 <?php
-require '../_classphp/ConectDBMYSQL.php';
-require '../_classphp/SQLQ.php';
+
+
+
+
 
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -25,29 +27,12 @@ require '../_classphp/SQLQ.php';
             <button onsubmit="return false" onclick="window.location='../index.php'" class="btn-back"> Voltar</button>
         </header>
 <main style="min-height:540px;">
-        <?php
+        <?php 
         $okinsert = filter_input(INPUT_POST, 'insertData');
-        $okupdate  = filter_input(INPUT_POST, 'upData');
-        $okdelete  = filter_input(INPUT_POST,'carDelete');
         
-        $action = new SQLQ();
         
-        if(!empty($okinsert)){
-         
-            $modelo = filter_input(INPUT_POST, 'modelo');
-            $ano = filter_input(INPUT_POST,'ano');
-            $parabrisa = filter_input(INPUT_POST, 'parabrisaLAR') .' x '. filter_input(INPUT_POST, 'parabrisaALT');
-            $ptdiant = filter_input(INPUT_POST, 'ptdiantLAR').' x '.filter_input(INPUT_POST, 'ptdiantALT');
-            $pttras = filter_input(INPUT_POST, 'pttrasLAR') .' x '. filter_input(INPUT_POST, 'pttrasALT');
-            $lattras = filter_input(INPUT_POST, 'vidro-lat-tras-lar') .' x '. filter_input(INPUT_POST, 'vidro-lat-tras-alt');
-            $vddiant = filter_input(INPUT_POST, 'vddiantLAR') .' x '. filter_input(INPUT_POST, 'vddiantALT');
-            $vdtras = filter_input(INPUT_POST, 'vdtrasLAR') .' x '. filter_input(INPUT_POST, 'vdtrasALT');
-            $traseiro = filter_input(INPUT_POST, 'traseiroLAR') .' x '. filter_input(INPUT_POST, 'traseiroALT');
-            
-            printf($modelo);
-            $action->queryInsert($modelo,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro);
-                    
-        }
+        
+        
         if(!empty($okupdate))
         {
             $carid = filter_input(INPUT_POST, 'carId');
@@ -64,20 +49,10 @@ require '../_classphp/SQLQ.php';
             $action->updtData($model,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro,$carid);
             //echo"UPDATED ON";
         }
-        if(!empty($okdelete))
-        {
-            $car = filter_input(INPUT_POST,'carDelete');
-            if(isset($car))
-            {
-                $carRef = filter_input(INPUT_POST,'carRefModel');
-               
-                $iDelete= filter_input(INPUT_POST,'idcarDelete');
-                $action->deleteCar($iDelete,$carRef);
-            }
-            
-            //echo"DELETED ON";
-        }
+        
         echo 'nada aqui<br>';
+        
+
         ?>
         
 </main>

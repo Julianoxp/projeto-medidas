@@ -1,3 +1,26 @@
+<?php 
+require '_classphp/ConectDBMYSQL.php';
+require '_classphp/SQLQ.php';
+$okinsert = filter_input(INPUT_POST, 'insertData');
+$action = new SQLQ();
+        
+        if(!empty($okinsert)){
+         
+            $modelo = filter_input(INPUT_POST, 'modelo');
+            $ano = filter_input(INPUT_POST,'ano');
+            $parabrisa = filter_input(INPUT_POST, 'parabrisaLAR') .' x '. filter_input(INPUT_POST, 'parabrisaALT');
+            $ptdiant = filter_input(INPUT_POST, 'ptdiantLAR').' x '.filter_input(INPUT_POST, 'ptdiantALT');
+            $pttras = filter_input(INPUT_POST, 'pttrasLAR') .' x '. filter_input(INPUT_POST, 'pttrasALT');
+            $lattras = filter_input(INPUT_POST, 'vidro-lat-tras-lar') .' x '. filter_input(INPUT_POST, 'vidro-lat-tras-alt');
+            $vddiant = filter_input(INPUT_POST, 'vddiantLAR') .' x '. filter_input(INPUT_POST, 'vddiantALT');
+            $vdtras = filter_input(INPUT_POST, 'vdtrasLAR') .' x '. filter_input(INPUT_POST, 'vdtrasALT');
+            $traseiro = filter_input(INPUT_POST, 'traseiroLAR') .' x '. filter_input(INPUT_POST, 'traseiroALT');
+            
+            printf($modelo);
+            $action->queryInsert($modelo,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro);
+                    
+        }
+?>
 <!doctype html>
 <html lang="pt-br">
     <head>
@@ -28,7 +51,7 @@
          <main>
         
             <div class="form-area">
-                <form class="form-add-args" id="submt-form" method="POST" enctype="multipart/form-data" action="_process/process.ini.php" >
+                <form class="form-add-args" id="submt-form" method="POST" enctype="multipart/form-data" action="<?=$_SERVER['PHP_SELF']?>" >
                     <label>Modelo<br><input class="valuesadd" type="text" name="modelo" id="1" ></label><span id="alertEr" style="color:red;"></span><br>
                     
                     <label for="ano">Ano <input type="number" class="valuesadd" name="ano"  pattern="[0-9]" id="2"></label><br>

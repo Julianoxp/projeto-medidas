@@ -30,7 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
         <main>
             <div class="init-contents">
 
-                <div class="welcomemsg" onclick="window.location='view.php'">
+                <div class="welcomemsg" onclick="window.location='login.php'">
                         <h2>CAR Tech - Meter </h2>            
                   </div>
                     <form method="post" action="search.php" class="form-search" >
@@ -39,19 +39,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Project/PHP/PHPProject.php to edi
                  </form>
                 
             </div>
-              <div class="grid-layout">
-                
-                  <aside class="options-contents" onclick="window.location='add.php'">
-                     <h3>New Car</h3>
-                <div class="icon-add-car"></div>                
-                       <br>
-                
-                   </aside>
-                <div class="result-query" onclick="alert('Função ainda não implementada!')">
-                   <h3 class="title-history">Services</h3><div class="icon-history-services"></div>
-                
-                </div>
-            </div>
+             
           
         </main>
         <div class="content-menu-bar" id="menu-mobile">

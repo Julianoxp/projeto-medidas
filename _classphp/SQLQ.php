@@ -13,7 +13,7 @@
 class SQLQ extends ConectDBMYSQL{
 
 
-    function queryAll()
+    function queryAll()  //Seleciona todos os dados de carros 
     {
         $query = parent::getConn()->prepare("SELECT * FROM CARROS");
         $query->execute();
@@ -39,8 +39,10 @@ class SQLQ extends ConectDBMYSQL{
         }
         
     }
+
+    //Cadastra os carros e suas medidas
     public function queryInsert($modelo,$ano,$parabrisa,$ptdianteira,$ptraseira,$lattras,$vddiant,$vddtras,$traseiro)
-    {
+    {           
         $sqlinsert = parent::getConn()->prepare("INSERT INTO `carros` (`ID`,`MODELO`,`ANO`, `PARABRISA`, `PORTAS DIANTEIRAS`, `PORTAS TRASEIRAS`, `VIDRO LAT TRASEIRO`, `VIDRO AUX DIANTEIRO`, `VIDRO AUX TRASEIRO`, `VIGIA TRASEIRO`) VALUES('','$modelo','$ano', '$parabrisa', '$ptdianteira', '$ptraseira','$lattras', '$vddiant', '$vddtras', '$traseiro')");
         $sqlinsert->execute();
         if($sqlinsert->rowCount()>=1){
@@ -57,6 +59,8 @@ class SQLQ extends ConectDBMYSQL{
         }
 
     }
+
+    //Seleciona algum modelo para editar os valores
     public function selectData($carid){
                 
                 $slct = parent::getConn()->prepare("SELECT * FROM `carros` WHERE ID='$carid'");
@@ -66,13 +70,15 @@ class SQLQ extends ConectDBMYSQL{
                    return $slct;                  
                 }
     }
-    function updtData($updmodel,$updano,$updPbrsa,$updptdiant,$updpttras,$updlattras,$updvddiant,$updvdtras,$updtras,$idcar){
+
+    //Edita os valores dos veliculos selecionados
+    function updtData($updmodel,$updano,$updPbrsa,$updptdiant,$updpttras,$updlattras,$updvddiant,$updvdtras,$updtras,$idcar){  
         
         $upd = parent::getConn()->prepare("UPDATE `carros` SET `MODELO`='$updmodel',`ANO`='$updano', `PARABRISA`='$updPbrsa', `PORTAS DIANTEIRAS`='$updptdiant',`PORTAS TRASEIRAS`='$updpttras',`VIDRO LAT TRASEIRO`='$updlattras',`VIDRO AUX DIANTEIRO`='$updvddiant', `VIDRO AUX TRASEIRO`='$updvdtras', `VIGIA TRASEIRO`='$updtras' WHERE `ID`='$idcar'");
         $upd->execute();
         if($upd->rowCount()>=1)
         {
-            echo"<form id='formadd' action='../search.php?carname={$updmodel}' method='post'><input type='hidden' value='Atualizado com sucesso!!' name='updtcar'/></form>";
+            echo"<form id='formadd' action='search.php?carname={$updmodel}' method='post'><input type='hidden' value='Atualizado com sucesso!!' name='updtcar'/></form>";
             echo '<script language="javascript">'
             . 'document.getElementById("formadd").submit();';
             echo '</script>';  
@@ -81,18 +87,20 @@ class SQLQ extends ConectDBMYSQL{
         }
         else{
             echo '<script language="javascript">alert("Dados iguais,Nada atualizado!!");'
-            . 'document.location="../search.php?carname='.$updmodel.'";';
+            . 'document.location="search.php?carname='.$updmodel.'";';
             echo '</script>';       
             
         }
     }
+
+    //Deleta carros selecionados na pagina de editar
     function deleteCar($iDelete,$model)
-    {
+    {    
         $delcar = parent::getConn()->prepare("DELETE FROM `carros` WHERE ID='$iDelete'");
         $delcar->execute();
         if($delcar->rowCount()>=1)
         {
-            echo"<form id='formadd' action='../search.php?carname={$model}' method='post'><input type='hidden' value='Item Deletado!!' name='deletcar'/></form>";
+            echo"<form id='formadd' action='search.php?carname={$model}' method='post'><input type='hidden' value='Item Deletado!!' name='deletcar'/></form>";
             echo '<script language="javascript">'
             . 'document.getElementById("formadd").submit();';
             echo '</script>'; 
@@ -101,7 +109,7 @@ class SQLQ extends ConectDBMYSQL{
         }
     }
   
-  
+    //Seleciona os veículos de acordo com o nome de referência na barra de pesquisas
     function GetnameCar($carname){
         $gnc = parent::getConn()->prepare("SELECT * FROM `carros` WHERE `MODELO` LIKE '%$carname%'");
         $gnc->execute();
@@ -138,6 +146,8 @@ class SQLQ extends ConectDBMYSQL{
         }
             
     }
+
+    //Seleciona o total de veiclos encontrados de acordo com a referência passada na barra de pesquisas
    function GetResult($carname)
     {
         if($getResult = parent::getConn()->prepare("SELECT * FROM `carros` WHERE `MODELO` LIKE '%$carname%'")){
@@ -157,8 +167,23 @@ class SQLQ extends ConectDBMYSQL{
         
        
     }
-    
-    function GetTimerProcess($carname){
+
+    //Consulta de usuários existentes e validação de login
+    function queryUser($pass)
+    {
+        $conn = parent::getConn();
+        $query = $conn->prepare("SELECT * FROM `usuarios` WHERE `USERPASS`='$pass'");
+        $query->execute();
+        if($query->rowCount())       {
+            header("location:index.php");
+        }
+        else{
+            header("location:login.php");
+        }
+    }
+
+        
+   /* function GetTimerProcess($carname){
        
         $getTimeResult = parent::getConn()->prepare("SELECT * FROM `carros` WHERE `MODELO` LIKE '%$carname%'");
         $getTimeResult->execute();
@@ -168,5 +193,6 @@ class SQLQ extends ConectDBMYSQL{
             printf("%0.16f segundos", $tempo/1000000);
         }
         
-    }
+    }*/
+
 }

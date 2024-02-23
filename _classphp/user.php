@@ -10,18 +10,23 @@
  *
  * @author Julians
  */
-class user extends ConectDBMYSQL{
-    private static $user;
-    private static $password;
-    function __construct($username,$password) {
-           self::$user = $username;
-            self::$password = $password;
+class user extends SQLQ{
+    private static $username;
+    private static $userpass;
+   
+    function __construct($name,$pass) {
+           self::$username = $name;
+            self::$userpass = $pass;
          parent::__construct();
     }
     public function getuser() {
-        echo self::$user;
+        echo self::$username;
     }
     public function getpassuser() {
-        echo self::$password;
+        echo self::$userpass;
+    }
+    public function loginUser()
+    {
+        parent::queryUser(self::$userpass);
     }
 }

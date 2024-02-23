@@ -126,7 +126,7 @@ div.btn-back:hover{
 header.topo-menu h3{
     margin-left: 20px;
     color: rgb(141, 141, 141);
-    font-family: Roboto, "Noto Naskh Arabic UI", Arial, sans-serif;;
+    font-family: Roboto, "Noto Naskh Arabic UI", Arial, sans-serif;
     font-weight: 200;
     
 }
@@ -135,7 +135,7 @@ div.btn-menu{
     border: 1px solid white;margin-left: 14px;
     border-radius: 4px;
     height: 18px;
-    display: none;
+    
     
 }
 div.btn-menu:hover{
