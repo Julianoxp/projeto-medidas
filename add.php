@@ -6,18 +6,24 @@ $action = new SQLQ();
         
         if(!empty($okinsert)){
          
-            $modelo = filter_input(INPUT_POST, 'modelo');
-            $ano = filter_input(INPUT_POST,'ano');
-            $parabrisa = filter_input(INPUT_POST, 'parabrisaLAR') .' x '. filter_input(INPUT_POST, 'parabrisaALT');
-            $ptdiant = filter_input(INPUT_POST, 'ptdiantLAR').' x '.filter_input(INPUT_POST, 'ptdiantALT');
-            $pttras = filter_input(INPUT_POST, 'pttrasLAR') .' x '. filter_input(INPUT_POST, 'pttrasALT');
-            $lattras = filter_input(INPUT_POST, 'vidro-lat-tras-lar') .' x '. filter_input(INPUT_POST, 'vidro-lat-tras-alt');
-            $vddiant = filter_input(INPUT_POST, 'vddiantLAR') .' x '. filter_input(INPUT_POST, 'vddiantALT');
-            $vdtras = filter_input(INPUT_POST, 'vdtrasLAR') .' x '. filter_input(INPUT_POST, 'vdtrasALT');
-            $traseiro = filter_input(INPUT_POST, 'traseiroLAR') .' x '. filter_input(INPUT_POST, 'traseiroALT');
+            $dataInsert = array(filter_input(INPUT_POST, 'modelo'), filter_input(INPUT_POST,'ano'),
+
+            filter_input(INPUT_POST,'parabrisaLAR').' '. filter_input(INPUT_POST, 'parabrisaALT'),
             
-            printf($modelo);
-            $action->queryInsert($modelo,$ano,$parabrisa,$ptdiant,$pttras,$lattras,$vddiant,$vdtras,$traseiro);
+            filter_input(INPUT_POST, 'ptdiantLAR').' '.filter_input(INPUT_POST, 'ptdiantALT'),
+
+            filter_input(INPUT_POST, 'pttrasLAR').' '. filter_input(INPUT_POST, 'pttrasALT'),
+
+            filter_input(INPUT_POST, 'vidro-lat-tras-lar').' '. filter_input(INPUT_POST, 'vidro-lat-tras-alt'),
+
+            filter_input(INPUT_POST, 'vddiantLAR').' '.filter_input(INPUT_POST, 'vddiantALT'),
+
+            filter_input(INPUT_POST, 'vdtrasLAR').' '.filter_input(INPUT_POST, 'vdtrasALT'),
+
+            filter_input(INPUT_POST, 'traseiroLAR').' '.filter_input(INPUT_POST, 'traseiroALT'));
+            
+            //printf($modelo);
+            $action->queryInsert($dataInsert);
                     
         }
 ?>

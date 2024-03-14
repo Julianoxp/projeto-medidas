@@ -41,17 +41,17 @@ class SQLQ extends ConectDBMYSQL{
     }
 
     //Cadastra os carros e suas medidas
-    public function queryInsert($modelo,$ano,$parabrisa,$ptdianteira,$ptraseira,$lattras,$vddiant,$vddtras,$traseiro)
-    {           
-        $sqlinsert = parent::getConn()->prepare("INSERT INTO `carros` (`ID`,`MODELO`,`ANO`, `PARABRISA`, `PORTAS DIANTEIRAS`, `PORTAS TRASEIRAS`, `VIDRO LAT TRASEIRO`, `VIDRO AUX DIANTEIRO`, `VIDRO AUX TRASEIRO`, `VIGIA TRASEIRO`) VALUES('','$modelo','$ano', '$parabrisa', '$ptdianteira', '$ptraseira','$lattras', '$vddiant', '$vddtras', '$traseiro')");
-        $sqlinsert->execute();
-        if($sqlinsert->rowCount()>=1){
-            echo"<form id='formadd' action='../search.php?carname={$modelo}' method='post'><input type='hidden' value='Cadastrado com sucesso!!' name='instcar'/></form>";
-            echo '<script language="javascript">'
-            . 'document.getElementById("formadd").submit();';
-            echo '</script>';   
-         
-        }
+    public function queryInsert(array $data)
+        {           
+            $sqlinsert = parent::getConn()->prepare("INSERT INTO `carros` (`MODELO`,`ANO`, `PARABRISA`, `PORTAS DIANTEIRAS`, `PORTAS TRASEIRAS`, `VIDRO LAT TRASEIRO`, `VIDRO AUX DIANTEIRO`, `VIDRO AUX TRASEIRO`, `VIGIA TRASEIRO`) VALUES(?,?,?,?,?,?,?,?,?)");
+            $sqlinsert->execute($data);
+            if($sqlinsert->rowCount()>=1){
+                echo"<form id='formadd' action='search.php?carname={$data[0]}' method='post'><input type='hidden' value='Cadastrado com sucesso!!' name='instcar'/></form>";
+                echo '<script language="javascript">'
+                . 'document.getElementById("formadd").submit();';
+                echo '</script>';   
+             
+            }
         else{
             echo '<script language="javascript">alert("Erro ao cadastrar!!");'
             . 'document.location="../index.php";';
@@ -122,13 +122,13 @@ class SQLQ extends ConectDBMYSQL{
                   echo"<table class='view-data'><thead><tr><th colspan='3' class='data-title'>{$item['MODELO']}</th></tr></thead><tbody>
                     <tr><td class='subthead'>PEÇAS</td><td colspan='2' class='subthead'>LARGURA x ALTURA</td></tr>";
 
-                  echo "<tr><td class='lefttd'>PARABRISA</td><td>{$item['PARABRISA']}</td></tr>";
-                  echo "<tr><td class='lefttd'>PORTAS DIANTEIRA</td><td>{$item['PORTAS DIANTEIRAS']}</td></tr>";
-                  echo "<tr><td class='lefttd'>PORTAS TRASEIRAS</td><td>{$item['PORTAS TRASEIRAS']}</td></tr>";
-                  echo "<tr><td class='lefttd'>VIDRO LAT TRASEIRO</td><td>{$item['VIDRO LAT TRASEIRO']}</td></tr>";
-                  echo "<tr><td class='lefttd'>VIDRO AUX DIANTEIRO</td><td>{$item['VIDRO AUX DIANTEIRO']}</td></tr>";
-                  echo "<tr><td class='lefttd'>VIDRO AUX TRASEIRO</td><td>{$item['VIDRO AUX TRASEIRO']}</td></tr>";
-                  echo "<tr><td class='lefttd'>VIGIA TRASEIRO</td><td>{$item['VIGIA TRASEIRO']}</td></tr>";
+                  echo "<tr><td class='lefttd'>PARABRISA</td><td>".str_replace(' ',' x ',$item['PARABRISA'])."</td></tr>";
+                  echo "<tr><td class='lefttd'>PORTAS DIANTEIRA</td><td>".str_replace(' ',' x ',$item['PORTAS DIANTEIRAS'])."</td></tr>";
+                  echo "<tr><td class='lefttd'>PORTAS TRASEIRAS</td><td>".str_replace(' ',' x ',$item['PORTAS TRASEIRAS'])."</td></tr>";
+                  echo "<tr><td class='lefttd'>VIDRO LAT TRASEIRO</td><td>".str_replace(' ',' x ',$item['VIDRO LAT TRASEIRO'])."</td></tr>";
+                  echo "<tr><td class='lefttd'>VIDRO AUX DIANTEIRO</td><td>".str_replace(' ',' x ',$item['VIDRO AUX DIANTEIRO'])."</td></tr>";
+                  echo "<tr><td class='lefttd'>VIDRO AUX TRASEIRO</td><td>".str_replace(' ',' x ',$item['VIDRO AUX TRASEIRO'])."</td></tr>";
+                  echo "<tr><td class='lefttd'>VIGIA TRASEIRO</td><td>".str_replace(' ',' x ',$item['VIGIA TRASEIRO'])."</td></tr>";
                   
 
                   echo'</tbody>

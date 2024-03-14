@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded",(event)=>{
             document.getElementById("pmsg").textContent = "Não são permitidos caracteres especiais!!"
             rmvMsg(false);
             
-        }else{i = 16;alert('formulario enviado')}
+        }else{i = 16;submitOn()}
         
     }
 }
